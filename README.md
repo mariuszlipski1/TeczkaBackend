@@ -6,7 +6,7 @@ API serwer dla aplikacji do zarządzania dokumentacją remontu.
 
 ### Wymagania
 - Node.js 18+
-- PostgreSQL 12+
+- Supabase
 
 ### Setup
 
