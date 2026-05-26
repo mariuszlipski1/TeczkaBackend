@@ -1,20 +1,50 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2020",
-    "lib": ["ES2020"],
-    "outDir": "./dist",
+    // File Layout
     "rootDir": "./src",
-    "strict": true,
+    "outDir": "./dist",
+
+    // Environment Settings
+    "module": "commonjs",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "types": ["node"],
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "declaration": true,
-    "declarationMap": true,
+
+    // Other Outputs
     "sourceMap": true,
-    "moduleResolution": "node"
+    "declaration": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+
+    // Recommended Options
+    "strict": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/database/db.ts",
+    "src/middleware/auth.ts",
+    "src/services/aiService.ts",
+    "src/routes/aiRoutes.ts",
+    "src/routes/estimateRoutes.ts",
+    "src/routes/noteRoutes.ts",
+    "src/routes/projectRoutes.ts",
+    "src/routes/index.ts",
+    "src/controllers/projectController.ts",
+    "src/database/testController.ts",
+    "src/database/testService.ts",
+    "src/models/Estimate.ts",
+    "src/models/Project.ts",
+    "src/middleware/fileUpload.ts",
+    "src/supabase.client.ts",
+    "src/index.ts"
+  ]
 }

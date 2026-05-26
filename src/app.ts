@@ -6,7 +6,8 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import notesRoutes from './routes/notes.routes';
+import notesRoutesNoAuth from './routes/notes.routes.noauth';
+import notesRoutesWithAuth from './routes/notes.routes';
 import { errorHandler } from './middleware/errorHandler';
 
 // Load environment variables
@@ -26,11 +27,16 @@ app.get('/health', (req: Request, res: Response) => {
     success: true,
     message: 'Teczka Budowlanca API is running',
     timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    authEnabled: process.env.REQUIRE_AUTH === 'true',
   });
 });
 
-// API Routes
-app.use('/api', notesRoutes);
+// API Routes - Choose based on environment
+// For MVP testing: use NO AUTH routes
+// For production: use WITH AUTH routes
+const useAuth = process.env.REQUIRE_AUTH === 'true';
+app.use('/api', useAuth ? notesRoutesWithAuth : notesRoutesNoAuth);
 
 // 404 Handler
 app.use((req: Request, res: Response) => {
